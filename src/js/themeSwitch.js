@@ -38,7 +38,7 @@ function onModalOpen(event) {
     }
   });
   window.addEventListener('keydown', changeByArrows);
-  window.addEventListener('keydown', closeByEscape);
+  // window.addEventListener('keydown', closeByEscape);
 }
 
 refs.lightBox.addEventListener('click', closeModal);
@@ -50,60 +50,60 @@ function closeModal(event) {
   refs.lightboxImage.src = '';
   refs.lightBox.classList.remove('is-open');
   window.addEventListener('keydown', changeByArrows);
-  window.removeEventListener('keydown', closeByEscape);
+  // window.removeEventListener('keydown', closeByEscape);
 }
 
-function closeByEscape(event) {
-  if (event.key !== 'Escape') {
-    return;
-  }
-  closeModal();
-}
-function changeByArrows(event) {
-  if (event.key === 'ArrowRight' && activeIndex < galleryItems.length - 1) {
-    activeIndex += 1;
-    refs.lightboxImage.src = galleryItems[activeIndex].original;
-    return;
-  }
-  if (event.key === 'ArrowLeft' && activeIndex > 0) {
-    activeIndex -= 1;
-    refs.lightboxImage.src = galleryItems[activeIndex].original;
-    return;
-  }
-  if (event.key === 'ArrowRight' && activeIndex === galleryItems.length - 1) {
-    activeIndex = 0;
-    refs.lightboxImage.src = galleryItems[activeIndex].original;
-    return;
-  }
-  if (event.key === 'ArrowLeft' && activeIndex === 0) {
-    activeIndex = galleryItems.length - 1;
-    refs.lightboxImage.src = galleryItems[activeIndex].original;
-    return;
-  }
-}
-
-// function keyboardManipulation({ key }) {
-//   switch (key) {
-//     case gallery.length - 1 > activeIndex && 'ArrowRight':
-//       activeIndex += 1;
-//       refs.modalImg.src = gallery[activeIndex].original;
-//       break;
-//     case activeIndex > 0 && 'ArrowLeft':
-//       activeIndex -= 1;
-//       refs.modalImg.src = gallery[activeIndex].original;
-//       break;
-//     case activeIndex === gallery.length - 1 && 'ArrowRight':
-//       activeIndex = 0;
-//       refs.modalImg.src = gallery[activeIndex].original;
-//       break;
-//     case activeIndex === 0 && 'ArrowLeft':
-//       activeIndex = gallery.length - 1;
-//       refs.modalImg.src = gallery[activeIndex].original;
-//       break;
-//     case 'Escape':
-//       closeModal();
-//       break;
-//     default:
-//       alert('что-то пошло не так');
+// function closeByEscape(event) {
+//   if (event.key !== 'Escape') {
+//     return;
+//   }
+//   closeModal();
+// }
+// function changeByArrows(event) {
+//   if (event.key === 'ArrowRight' && activeIndex < galleryItems.length - 1) {
+//     activeIndex += 1;
+//     refs.lightboxImage.src = galleryItems[activeIndex].original;
+//     return;
+//   }
+//   if (event.key === 'ArrowLeft' && activeIndex > 0) {
+//     activeIndex -= 1;
+//     refs.lightboxImage.src = galleryItems[activeIndex].original;
+//     return;
+//   }
+//   if (event.key === 'ArrowRight' && activeIndex === galleryItems.length - 1) {
+//     activeIndex = 0;
+//     refs.lightboxImage.src = galleryItems[activeIndex].original;
+//     return;
+//   }
+//   if (event.key === 'ArrowLeft' && activeIndex === 0) {
+//     activeIndex = galleryItems.length - 1;
+//     refs.lightboxImage.src = galleryItems[activeIndex].original;
+//     return;
 //   }
 // }
+
+function changeByArrows({ key }) {
+  switch (key) {
+    case galleryItems.length - 1 > activeIndex && 'ArrowRight':
+      activeIndex += 1;
+      refs.lightboxImage.src = galleryItems[activeIndex].original;
+      break;
+    case activeIndex > 0 && 'ArrowLeft':
+      activeIndex -= 1;
+      refs.lightboxImage.src = galleryItems[activeIndex].original;
+      break;
+    case activeIndex === galleryItems.length - 1 && 'ArrowRight':
+      activeIndex = 0;
+      refs.lightboxImage.src = galleryItems[activeIndex].original;
+      break;
+    case activeIndex === 0 && 'ArrowLeft':
+      activeIndex = galleryItems.length - 1;
+      refs.lightboxImage.src = galleryItems[activeIndex].original;
+      break;
+    case 'Escape':
+      closeModal();
+      break;
+    default:
+      alert('что-то пошло не так');
+  }
+}
