@@ -1,1 +1,3 @@
-import './sass/main.scss';
+import './js/themeSwitch';
+import './js/galleryItems';
+import './js/refs';
